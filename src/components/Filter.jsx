@@ -1,21 +1,19 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
+import Input from "./Input";
 
-function Filter({ onChange = (v) => {} }) {
-  const [completed, setCompleted] = useState(false);
-  const change = useCallback(
-    (e) => {
-      const val = e.target.value;
-      setCompleted(val);
-      onChange(val)
-    },
-    [setCompleted, onChange]
-  );
-
+function Filter({ onTitleChanged, onCompletedChanged }) {
+  const onCheckboxChange = (e) => {
+    onCompletedChanged(e.target.checked);
+  };
   return (
     <div>
+      <h3>Filter todos</h3>
       <div>
-        <input name="completed" value={completed} onChange={change} />
-        <label>Completed</label>
+        <Input label="Title" onChange={onTitleChanged} />
+        <div>
+          <label>Completed</label>
+          <input type="checkbox" onChange={onCheckboxChange} />
+        </div>
       </div>
     </div>
   );

@@ -1,40 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useReducerTodo from "./reducer";
 import NewTodo from "../components/NewTodo";
 import Todo from "../components/Todo";
+import Filter from "../components/Filter";
+import useReducerFilters from "./filters";
 
 const idCounter = { value: 4 };
 function Container() {
   const [state, dispatch] = useReducerTodo();
-  console.log("state", state);
+
   const addTodo = (todoTitle) => {
     dispatch({
       action: "add",
       payload: { id: idCounter.value++, title: todoTitle, completed: false },
     });
   };
-
   const complete = (todo) => {
     dispatch({
       action: "update",
       payload: { ...todo, completed: !todo.completed },
     });
   };
-
   const remove = (todo) => {
     dispatch({
       action: "remove",
       payload: todo,
     });
   };
+
+  const { filteredState, onFilterTitle, onFilterComplete } =
+    useReducerFilters(state);
+
   return (
     <div>
       <div>
         <NewTodo onNewTodo={addTodo} />
+        <Filter
+          onTitleChanged={onFilterTitle}
+          onCompletedChanged={onFilterComplete}
+        />
       </div>
+      <hr />
       <div>
-        {state.map((todo) => (
-          <Todo todo={todo} onClick={complete} onDelete={remove} />
+        {filteredState.map((todo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onClick={complete}
+            onDelete={remove}
+          />
         ))}
       </div>
     </div>

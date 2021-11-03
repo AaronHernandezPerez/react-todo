@@ -8,7 +8,7 @@ function todoReducer(state, { action, payload }) {
       newState.push(payload);
       break;
     case "remove":
-      const rmIndex = state.indexOf(payload) -1;
+      const rmIndex = state.indexOf(payload);
       newState.splice(rmIndex, 1);
       break;
     case "update":
