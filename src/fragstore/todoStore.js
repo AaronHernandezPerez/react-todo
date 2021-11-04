@@ -1,22 +1,18 @@
 import createStore from "fragstore";
 import initialData from "../data";
 
-export const { useStore, getStore, withStore } = createStore(initialData);
+export const { useStore, getStore, withStore } = createStore(initialData)
 
-export const add = (todo) => {
-  const [todos, setTodos] = getStore();
-  setTodos([...todos, todo]);
-};
+const [, setTodos] = getStore()
 
-export const remove = (todo) => {
-  const [todos, setTodos] = getStore();
-  const rmIndex = todos.indexOf(todo);
-  setTodos([...todos, todo].splice(rmIndex, 1));
-};
+export function add(todo) {
+  setTodos((todos) => [...todos, todo])
+}
 
-export const update = (todo) => {
-  const [todos, setTodos] = getStore();
-  const upIndex = todos.findIndex((t) => t.id === todo.id);
-  todos[upIndex] = todo;
-  setTodos(todos);
-};
+export function remove(todo) {
+  setTodos((todos) => todos.filter((t) => t.id !== todo.id))
+}
+
+export function update(todo) {
+  setTodos((todos) => todos.map((t) => (t.id === todo.id ? todo : t)))
+}
