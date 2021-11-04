@@ -4,5 +4,4 @@ const initialData = [
   { id: 3, title: "Sleep", completed: false },
 ];
 
-
 export default initialData;

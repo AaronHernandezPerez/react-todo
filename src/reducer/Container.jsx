@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useReducerTodo from "./reducer";
 import NewTodo from "../components/NewTodo";
 import Todo from "../components/Todo";
@@ -28,7 +28,7 @@ function Container() {
     });
   };
 
-  const { filteredState, onFilterTitle, onFilterComplete } =
+  const { filteredState, updateTitle, updateComplete } =
     useReducerFilters(state);
 
   return (
@@ -36,8 +36,8 @@ function Container() {
       <div>
         <NewTodo onNewTodo={addTodo} />
         <Filter
-          onTitleChanged={onFilterTitle}
-          onCompletedChanged={onFilterComplete}
+          onTitleChanged={updateTitle}
+          onCompletedChanged={updateComplete}
         />
       </div>
       <hr />

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 const useReducerFilters = (state) => {
@@ -7,12 +6,13 @@ const useReducerFilters = (state) => {
   useEffect(() => {
     setfilteredState(state);
   }, [state, setfilteredState]);
-  const onFilterTitle = (title) => {
+
+  const updateTitle = (title) => {
     setfilteredState(
       state.filter((t) => t.title.toLowerCase().includes(title.toLowerCase()))
     );
   };
-  const onFilterComplete = (completed) => {
+  const updateComplete = (completed) => {
     if (completed) {
       setfilteredState(state.filter((t) => t.completed === completed));
     } else {
@@ -22,10 +22,9 @@ const useReducerFilters = (state) => {
 
   return {
     filteredState,
-    onFilterTitle,
-    onFilterComplete,
+    updateTitle,
+    updateComplete,
   };
 };
 
-
- export default useReducerFilters
+export default useReducerFilters;
