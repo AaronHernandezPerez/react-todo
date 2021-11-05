@@ -6,7 +6,7 @@ import Filter from "../components/Filter";
 import { add, remove, update } from "./todoSlice";
 import useReduxFilters from "./filter";
 
-const idCounter = { value: 4 };
+const idCounter = { value: 10000 };
 
 function TodoPage() {
   const dispatch = useDispatch();

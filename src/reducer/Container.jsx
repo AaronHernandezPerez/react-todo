@@ -5,7 +5,7 @@ import Todo from "../components/Todo";
 import Filter from "../components/Filter";
 import useReducerFilters from "./filters";
 
-const idCounter = { value: 4 };
+const idCounter = { value: 10000 };
 function Container() {
   const [state, dispatch] = useReducerTodo();
 

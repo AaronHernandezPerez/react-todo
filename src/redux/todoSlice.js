@@ -9,7 +9,7 @@ export const todoSlice = createSlice({
       state.push(payload);
     },
     remove: (state, { payload }) => {
-      const rmIndex = state.indexOf(payload);
+      const rmIndex =  state.findIndex((t) => t.id === payload.id);
       state.splice(rmIndex, 1);
     },
     update: (state, { payload }) => {

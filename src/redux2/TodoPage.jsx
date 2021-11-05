@@ -7,7 +7,7 @@ import { add, remove, update } from "../redux/todoSlice";
 import { filterComplete, filterTitle } from "./filterSlice";
 import filteredTodos from "./filter";
 
-const idCounter = { value: 4 };
+const idCounter = { value: 10000 };
 
 function TodoPage() {
   const dispatch = useDispatch();

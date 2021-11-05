@@ -5,7 +5,7 @@ import Filter from "../components/Filter";
 import { add, update, remove, useStore } from "./todoStore";
 import { useFilterStore } from "./filterStore";
 import { useFilteredTodos } from "./filter";
-const idCounter = { value: 4 };
+const idCounter = { value: 10000 };
 function Container() {
   const state = useFilteredTodos();
 
