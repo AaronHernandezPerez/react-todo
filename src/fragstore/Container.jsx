@@ -2,9 +2,10 @@ import React from "react";
 import NewTodo from "../components/NewTodo";
 import Todo from "../components/Todo";
 import Filter from "../components/Filter";
-import { add, update, remove, useStore } from "./todoStore";
+import { add, update, remove } from "./todoStore";
 import { useFilterStore } from "./filterStore";
 import { useFilteredTodos } from "./filter";
+import TestButton from "../components/TestButton";
 const idCounter = { value: 10000 };
 function Container() {
   const state = useFilteredTodos();
@@ -19,14 +20,15 @@ function Container() {
     remove(todo);
   };
 
-  const setTitle = useFilterStore.title()[1];
-  const setComplete = useFilterStore.complete()[1];
+  const [titleValue, setTitle] = useFilterStore.title();
+  const [completeValue, setComplete] = useFilterStore.complete();
 
   return (
     <div>
       <div>
+        <TestButton addElement={add} changeMarked={setComplete} changeTitle={setTitle} />
         <NewTodo onNewTodo={addTodo} />
-        <Filter onTitleChanged={setTitle} onCompletedChanged={setComplete} />
+        <Filter onTitleChanged={setTitle} onCompletedChanged={setComplete} titleValue={titleValue} completeValue={completeValue}/>
       </div>
       <hr />
       <div>

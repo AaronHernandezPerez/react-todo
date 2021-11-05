@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "./Input";
 
-function Filter({ onTitleChanged, onCompletedChanged }) {
+function Filter({ onTitleChanged, onCompletedChanged, titleValue="", completeValue =false }) {
   const onCheckboxChange = (e) => {
     onCompletedChanged(e.target.checked);
   };
@@ -9,10 +9,10 @@ function Filter({ onTitleChanged, onCompletedChanged }) {
     <div>
       <h3>Filter todos</h3>
       <div>
-        <Input label="Title" onChange={onTitleChanged} />
+        <Input label="Title" onChange={onTitleChanged} value={titleValue} />
         <div>
           <label>Completed</label>
-          <input type="checkbox" onChange={onCheckboxChange} />
+          <input type="checkbox" onChange={onCheckboxChange} checked={completeValue} />
         </div>
       </div>
     </div>

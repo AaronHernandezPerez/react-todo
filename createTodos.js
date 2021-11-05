@@ -35,7 +35,7 @@ function createTodos(n) {
 }
 
 
-const todos = createTodos(2000);
+const todos = createTodos(5000);
 console.log(todos.length)
 const json = JSON.stringify({todos})
 fs.writeFile('./src/todos.json', json, 'utf8', ()=>{});

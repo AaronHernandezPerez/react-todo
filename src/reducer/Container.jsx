@@ -4,6 +4,7 @@ import NewTodo from "../components/NewTodo";
 import Todo from "../components/Todo";
 import Filter from "../components/Filter";
 import useReducerFilters from "./filters";
+import TestButton from "../components/TestButton";
 
 const idCounter = { value: 10000 };
 function Container() {
@@ -28,16 +29,28 @@ function Container() {
     });
   };
 
-  const { filteredState, updateTitle, updateComplete } =
-    useReducerFilters(state);
+  const {
+    filteredState,
+    titleValue,
+    completeValue,
+    settitleValue,
+    setcompleteValue,
+  } = useReducerFilters(state);
 
   return (
     <div>
       <div>
+        <TestButton
+          addElement={(e) => dispatch({ action: "add", payload: e })}
+          changeTitle={settitleValue}
+          changeMarked={setcompleteValue}
+        />
         <NewTodo onNewTodo={addTodo} />
         <Filter
-          onTitleChanged={updateTitle}
-          onCompletedChanged={updateComplete}
+          titleValue={titleValue}
+          completeValue={completeValue}
+          onTitleChanged={settitleValue}
+          onCompletedChanged={setcompleteValue}
         />
       </div>
       <hr />
