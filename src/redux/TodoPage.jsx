@@ -5,11 +5,12 @@ import Todo from "../components/Todo";
 import Filter from "../components/Filter";
 import { add, remove, update } from "./todoSlice";
 import useReduxFilters from "./filter";
+import TestButton from "../components/TestButton"
 const idCounter = { value: 10000 };
 
 function TodoPage() {
   const dispatch = useDispatch();
-  const { state, setTitle, setComplete } = useReduxFilters();
+  const { state, setTitle, setComplete, title, value } = useReduxFilters();
   const addTodo = (todoTitle) => {
     dispatch(
       add({ id: idCounter.value++, title: todoTitle, completed: false })
@@ -25,8 +26,9 @@ function TodoPage() {
   return (
     <div>
       <div>
+        <TestButton addElement={(e)=>dispatch(add(e))} changeTitle={setTitle} changeMarked={setComplete} />
         <NewTodo onNewTodo={addTodo} />
-        <Filter onTitleChanged={setTitle} onCompletedChanged={setComplete} />
+        <Filter onTitleChanged={setTitle} onCompletedChanged={setComplete} titleValue={title} completeValue={value} />
       </div>
       <hr />
       <div>

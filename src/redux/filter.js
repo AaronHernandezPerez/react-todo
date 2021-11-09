@@ -22,6 +22,8 @@ const useReduxFilters = () => {
     state,
     setTitle,
     setComplete,
+    title,
+    complete
   };
 };
 
